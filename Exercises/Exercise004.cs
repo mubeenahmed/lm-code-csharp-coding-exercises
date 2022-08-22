@@ -5,8 +5,8 @@ namespace Exercises
     {
         public static DateTime AddGigaSecond(DateTime dateTime)
         {
-            // Replace the exception statement below with your code!
-            throw new NotImplementedException();
+            var gigaSecond = 1E9;
+            return dateTime.AddSeconds(gigaSecond);
         }
     }
 }

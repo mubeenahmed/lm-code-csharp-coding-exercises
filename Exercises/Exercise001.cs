@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Exercises.Models;
 
 namespace Exercises
@@ -8,36 +9,57 @@ namespace Exercises
     {
         public string CapitalizeWord(string word)
         {
-            // Replace the exception statement below with your code!
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(word))
+            {
+                return word;
+            }
+
+            return char.ToUpper(word[0]) + word.Substring(1);
         }
 
         public string GenerateInitials(string firstName, string lastName)
         {
-            // Replace the exception statement below with your code!
-            throw new NotImplementedException();
+            return firstName[0] + "." + lastName[0];
         }
 
         public double AddVat(double originalPrice, double vatRate)
         {
-            // Replace the exception statement below with your code!
-            throw new NotImplementedException();
+            if (originalPrice < 0)
+            {
+                throw new ArgumentException("Price cannot be negative. Please enter a valid price.");
+            }
 
-            // NB: Look in Exercise001Tests.cs
-            //     There is a test with commented out assertions.
-            //     For an extra challenge, uncomment those assertions and make that test pass too.
+            if (vatRate < 0)
+            {
+                throw new ArgumentException("VAT cannot be negative. Please enter a valid VAT.");
+            }
+
+            var addedVat = originalPrice + originalPrice * vatRate / 100;
+            return Math.Round(addedVat, 2);
         }
 
         public string Reverse(string sentence)
         {
-            // Replace the exception statement below with your code!
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(sentence))
+            {
+                return sentence;
+            }
+            var characters = sentence.ToCharArray();
+            Array.Reverse(characters);
+            return new string(characters);
         }
 
         public int CountLinuxUsers(List<User> users)
         {
-            // Replace the exception statement below with your code!
-            throw new NotImplementedException();
+            if (users == null)
+            {
+                return 0;
+            }
+
+            return users.Where(x => x.Type == "Linux")
+                .GroupBy(x => x.Type)
+                .Select(group => group.Count())
+                .FirstOrDefault();
         }
     }
 }

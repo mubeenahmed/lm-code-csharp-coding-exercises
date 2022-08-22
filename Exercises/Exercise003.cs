@@ -1,12 +1,20 @@
 ﻿using System;
+using System.Linq;
+
 namespace Exercises
 {
     public class Exercise003
     {
-        // Replace the exception statement below with your code!
-        public string[] IceCreamFlavours => throw new NotImplementedException();
+        public string[] IceCreamFlavours => new string[] { 
+            "Pistachio", "Raspberry Ripple", "Vanilla", "Mint Chocolate Chip", "Chocolate", "Mango Sorbet"
+        };
 
-        // Replace the exception statement below with your code!
-        public int IceCreamCode(string iceCreamFlavour) => throw new NotImplementedException();
+        public int IceCreamCode(string iceCreamFlavour) =>
+            IceCreamFlavours
+            .Select((value, index) => new { value, index })
+            .Where(x => x.value.ToLower() == iceCreamFlavour.ToLower())
+            .Select(x => x.index)
+            .FirstOrDefault();
+            
     }
 }
